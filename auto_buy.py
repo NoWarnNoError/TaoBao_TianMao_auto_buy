@@ -1,14 +1,3 @@
-# python3.6.5
-# coding:utf-8
-
-'''
-@time:2019-02-16 16:50
-@author: 李铭
-
-程序利用自动测试工具模拟用户下单操作，完成商品的抢购
-仅作为学习过程中的实践，无商业用途
-'''
-
 from selenium import webdriver
 import datetime
 import time
@@ -44,21 +33,21 @@ def login(url, mall):
 def buy(buy_time, mall):
     '''
     购买函数
-    
+
     buy_time:购买时间
     mall:商城类别
-    
+
     获取页面元素的方法有很多，获取得快速准确又是程序的关键
     在写代码的时候运行测试了很多次，css_selector的方式表现最佳
     '''
-    if mall == '1':
-        # "立即购买"的css_selector
-        button_buy = '#J_juValid > div.tb-btn-buy > a'
-        # "立即下单"的css_selector
-        btn_order = '#submitOrder_1 > div.wrapper > a'
-    else:
-        button_buy = '#J_LinkBuy'
-        btn_order = '#submitOrder_1 > div > a'
+    # if mall == '1':
+    #     # "立即购买"的css_selector
+    #     button_buy = '#J_juValid > div.tb-btn-buy > a'
+    #     # "立即下单"的css_selector
+    #     btn_order = '#submitOrder_1 > div.wrapper > a'
+    # else:
+    #     button_buy = '#J_LinkBuy'
+    #     btn_order = '#submitOrder_1 > div > a'
 
     while True:
         # 现在时间大于预设时间则开售抢购
@@ -66,28 +55,29 @@ def buy(buy_time, mall):
         if datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f') > buy_time:
             try:
                 # 找到“立即购买”，点击
-                if driver.find_element("id", button_buy):
-                    driver.find_element("id", button_buy).click()
+                if driver.find_element("link text", "立即购买"):
+                    driver.find_element("link text", "立即购买").click()
+                    # driver.find_element("id", button_buy).click()
                     break
                 # time.sleep(0.1)
             except:
                 print("无 立即购买 按钮")
                 # time.sleep(0.3)
 
-    # while True:
-    #     try:
-    #         # 找到“立即下单”，点击，
-    #         if driver.find_element_by_css_selector(btn_order):
-    #             driver.find_element_by_css_selector(btn_order).click()
-    #             # 下单成功，跳转至支付页面
-    #             print("购买成功")
-    #             break
-    #     except:
-    #         time.sleep(0.5)
+    while True:
+        try:
+            # 找到“立即下单”，点击，
+            if driver.find_element("link text", "提交订单"):
+                driver.find_element("link text", "提交订单").click()
+                # 下单成功，跳转至支付页面
+                print("购买成功")
+                break
+        except:
+            time.sleep(0.5)
 
 
 if __name__ == "__main__":
-    url = "https://chaoshi.detail.tmall.com/item.htm?spm=a1z0d.6639537/tb.1997196601.43.3d385886EwIsQt&id=20739895092"
+    url = "https://item.taobao.com/item.htm?spm=a2141.241046-hk.feeds.d_2_0.41ca6f11hJDFj5&country=HK&pvid=a64db399-8add-47e8-9e7e-c31fd5cb630c&id=694340518396&scm=1007.35313.250647.0"
     mall = "2"
     bt = "2023-02-06 20:00:00"
     login(url, mall)
