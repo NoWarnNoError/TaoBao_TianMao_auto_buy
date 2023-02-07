@@ -8,15 +8,10 @@ driver = webdriver.Edge()
 driver.maximize_window()
 
 
-def login(url, mall):
-    '''
-    登陆函数
-    
-    url:商品的链接
-    mall：商城类别
-    '''
+def login(url):
     driver.get(url)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(1)
+
     # time.sleep(2)
     # # 淘宝和天猫的登陆链接文字不同
     # if mall == '1':
@@ -30,7 +25,7 @@ def login(url, mall):
     # time.sleep(30)
 
 
-def buy(buy_time, mall):
+def buy(buy_time):
     '''
     购买函数
 
@@ -77,8 +72,9 @@ def buy(buy_time, mall):
 
 
 if __name__ == "__main__":
-    url = "https://item.taobao.com/item.htm?spm=a2141.241046-hk.feeds.d_2_0.41ca6f11hJDFj5&country=HK&pvid=a64db399-8add-47e8-9e7e-c31fd5cb630c&id=694340518396&scm=1007.35313.250647.0"
-    mall = "2"
-    bt = "2023-02-06 20:00:00"
-    login(url, mall)
-    buy(bt, mall)
+    url = "https://chaoshi.detail.tmall.com/item.htm?spm=a1z0d.6639537/tb.1997196601.43.3d385886c8AX5s&id=20739895092"
+    mall = "TIANMAO"
+    buy_time = "2023-02-07 20:00:00"
+
+    login(url)
+    buy(buy_time)
