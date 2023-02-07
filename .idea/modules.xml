@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/taobao-tianmao-auto-buy.iml" filepath="$PROJECT_DIR$/.idea/taobao-tianmao-auto-buy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TaoBao_auto_buy.iml" filepath="$PROJECT_DIR$/.idea/TaoBao_auto_buy.iml" />
     </modules>
   </component>
 </project>
